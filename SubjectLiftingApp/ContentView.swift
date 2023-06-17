@@ -21,7 +21,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
+            List {
                 VStack {
                     ForEach(items) { item in
                         Button {
@@ -33,10 +33,14 @@ struct ContentView: View {
                     }
                     .onDelete(perform: deleteItems)
                 }
-                .padding()
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
             }
             .navigationTitle("Items")
             .toolbar {
+//                ToolbarItem {
+//                    EditButton()
+//                }
                 ToolbarItem {
                     Button {
                         showingAddItemSheet = true
@@ -46,34 +50,13 @@ struct ContentView: View {
                 }
             }
             .sheet(item: $selectedItem) { item in
-
                 ItemDetailsView(item: item)
                     .padding()
-                    .presentationDetents([.large, .medium])
+                    .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showingAddItemSheet) {
-                if let selectedItem {
-                    ItemDetailsView(item: selectedItem)
-                } else {
-                    Text("Here you can add an item")
-                }
-            }
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                AddItemView()
             }
         }
     }

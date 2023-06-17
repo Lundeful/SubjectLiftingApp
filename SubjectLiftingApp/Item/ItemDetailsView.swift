@@ -15,22 +15,18 @@ struct ItemDetailsView: View {
     var body: some View {
         VStack {
             if let image = item.wrappedImage {
-                ZStack {
-                    Circle()
-                        .foregroundColor(.yellow)
-                        .frame(width: circleRadius, height: circleRadius)
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: imageRadius, height: imageRadius)
-                }
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: imageRadius, height: imageRadius)
+
             } else {
                 Spacer()
                     .frame(width: imageRadius, height: imageRadius)
             }
             VStack(alignment: .leading, spacing: 5) {
                 Text(item.name ?? "Unnamed item")
-                    .font(.title)
+                    .font(.largeTitle)
                     .bold()
                 Text(item.itemDescription ?? item.timestamp!.formatted(date: .numeric, time: .omitted))
             }
@@ -46,6 +42,12 @@ struct ItemDetailsView: View {
 
 struct ItemDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailsView(item: .example)
+        Text("Reload preview to display sheet")
+            .sheet(isPresented: .constant(true)) {
+                ItemDetailsView(item: .example)
+                    .background(.orange.gradient)
+                    .presentationDetents([.medium])
+                    .presentationDragIndicator(.visible)
+            }
     }
 }
