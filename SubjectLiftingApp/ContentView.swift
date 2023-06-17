@@ -11,34 +11,54 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
+    @State private var showingAddItemSheet = false
+    @State private var selectedItem: Item?
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+        NavigationStack {
+            ScrollView {
+                VStack {
+                    ForEach(items) { item in
+                        Button {
+                            selectedItem = item
+                        } label: {
+                            ItemRowView(item: item)
+                        }
+                        .buttonStyle(.plain)
                     }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
+                .padding()
             }
+            .navigationTitle("Items")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button {
+                        showingAddItemSheet = true
+                    } label: {
+                        Label("Show sheet", systemImage: "plus")
                     }
                 }
             }
-            Text("Select an item")
+            .sheet(item: $selectedItem) { item in
+
+                ItemDetailsView(item: item)
+                    .padding()
+                    .presentationDetents([.large, .medium])
+                    .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showingAddItemSheet) {
+                if let selectedItem {
+                    ItemDetailsView(item: selectedItem)
+                } else {
+                    Text("Here you can add an item")
+                }
+            }
         }
     }
 
@@ -77,12 +97,13 @@ struct ContentView: View {
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
-    formatter.timeStyle = .medium
+    formatter.timeStyle = .none
     return formatter
 }()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
