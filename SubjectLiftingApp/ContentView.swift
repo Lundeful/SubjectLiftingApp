@@ -31,6 +31,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
                 .onMove(perform: moveItems)
+                .listRowSeparator(.visible, edges: .bottom)
             }
             .navigationTitle("Items")
             .toolbar {

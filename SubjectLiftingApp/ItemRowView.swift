@@ -9,26 +9,25 @@ import SwiftUI
 
 struct ItemRowView: View {
     let item: Item
-    let circleRadius: CGFloat = 55
     let imageRadius: CGFloat = 75
     
     var body: some View {
-        HStack {
+        HStack(alignment: .center) {
             if let image = item.wrappedImage {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
                     .frame(width: imageRadius, height: imageRadius)
-
             } else {
-                Spacer()
+                Image(systemName: "questionmark")
                     .frame(width: imageRadius, height: imageRadius)
             }
+
             VStack(alignment: .leading) {
-                Text(item.name ?? "Unnamed item")
+                Text(item.wrappedName)
                     .font(.headline)
                     .bold()
-                Text(item.itemDescription ?? item.timestamp!.formatted(date: .numeric, time: .omitted))
+                Text(item.wrappedItemDescription)
                     .font(.subheadline)
                     .lineLimit(1)
             }
