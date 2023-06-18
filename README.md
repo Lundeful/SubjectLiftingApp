@@ -10,7 +10,7 @@ It has simple Create, Read, Delete and Sort features backed by CoreData and Clou
 
 Screenshots (Click to open full size)
 
-<img src="https://github.com/Lundeful/SubjectLiftingApp/assets/31478985/913cd98d-84a4-476c-b3d6-4ccbeaa212bb" width="300" />
-<img src="https://github.com/Lundeful/SubjectLiftingApp/assets/31478985/1f85e6b2-7df3-41e8-9686-11a2d245bf7b" width="300" />
-<img src="https://github.com/Lundeful/SubjectLiftingApp/assets/31478985/7d9099ab-0062-4bb1-afde-94120e34e9d8" width="300" />
-<img src="https://github.com/Lundeful/SubjectLiftingApp/assets/31478985/935e144a-73ae-4760-96cd-5ad2a74b2563" width="300" />
+<img src="https://github.com/Lundeful/SubjectLiftingApp/assets/31478985/913cd98d-84a4-476c-b3d6-4ccbeaa212bb" width="400" />
+<img src="https://github.com/Lundeful/SubjectLiftingApp/assets/31478985/1f85e6b2-7df3-41e8-9686-11a2d245bf7b" width="400" />
+<img src="https://github.com/Lundeful/SubjectLiftingApp/assets/31478985/7d9099ab-0062-4bb1-afde-94120e34e9d8" width="400" />
+<img src="https://github.com/Lundeful/SubjectLiftingApp/assets/31478985/935e144a-73ae-4760-96cd-5ad2a74b2563" width="400" />
