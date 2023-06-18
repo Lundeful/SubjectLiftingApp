@@ -40,15 +40,25 @@ struct ExampleData {
     ]
 
     static let descriptions = [
-        "A loyal and affectionate companion, always brightening your day with tail-wagging greetings.",
-        "An energetic and curious pup, keeping you on your toes with endless enthusiasm for exploring the world around them.",
-        "A gentle and patient furry friend, providing solace during both good and challenging times.",
-        "Clever and quick-learning buddies, impressing you with their ability to pick up new tricks and commands effortlessly.",
-        "Ever-vigilant guardians, taking their role of protecting your home and family very seriously.",
-        "Mischievous troublemakers, keeping the house lively with playful antics and boundless energy.",
-        "Furry balls of love, melting your heart with warm cuddles and unwavering affection.",
-        "Curious adventurers, leading you on exciting walks and sniffing out new scents along the way.",
-        "Social butterflies, charming everyone they meet with their friendly nature and becoming beloved friends to all.",
-        "Graceful athletes, effortlessly gliding through various dog sports and activities, showcasing their athleticism and agility."
+        "This dog is known for its friendly and playful nature.",
+        "Meet a loyal and intelligent companion that loves to explore.",
+        "The adorable dog is small in size but has a big heart.",
+        "This dog has a beautiful coat and is always eager to please.",
+        "A gentle and affectionate dog that gets along well with everyone.",
+        "This dog is full of energy and loves outdoor adventures.",
+        "Meet a charming and social dog that enjoys meeting new people.",
+        "A smart and trainable dog that quickly learns new tricks.",
+        "This dog is known for its loving and gentle nature with children.",
+        "A lively and spirited dog that brings joy to any household.",
+        "Meet a confident and fearless dog with a strong protective instinct.",
+        "This dog is always up for a game of fetch and loves to run.",
+        "A graceful and elegant dog with a regal presence.",
+        "Meet an independent and curious dog that loves to explore its surroundings.",
+        "This dog is known for its unwavering loyalty and devotion.",
+        "A fun-loving and mischievous dog that keeps everyone entertained.",
+        "Meet a calm and laid-back dog that enjoys relaxing with its family.",
+        "This dog is highly adaptable and can thrive in various environments.",
+        "An alert and vigilant dog that makes an excellent watchdog.",
+        "Meet a social and outgoing dog that makes friends wherever it goes."
     ]
 }

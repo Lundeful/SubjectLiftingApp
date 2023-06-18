@@ -66,12 +66,15 @@
 			isa = PBXGroup;
 			children = (
 				83F9BAB52A3CC074002198D0 /* SubjectLiftingAppApp.swift */,
-				83F9BAB72A3CC074002198D0 /* ContentView.swift */,
-				83F9BAD42A3CD6E2002198D0 /* Item */,
-				83F9BAB92A3CC075002198D0 /* Assets.xcassets */,
-				83F9BAD52A3CE20F002198D0 /* ExampleData.swift */,
 				83F9BABE2A3CC075002198D0 /* Persistence.swift */,
+				83F9BAB72A3CC074002198D0 /* ContentView.swift */,
+				83F9BAC82A3CC23B002198D0 /* AddItemView.swift */,
+				83F9BAD02A3CD6CF002198D0 /* ItemRowView.swift */,
+				83F9BAD22A3CD6D4002198D0 /* ItemDetailsView.swift */,
+				83F9BACE2A3CD4BE002198D0 /* Item-CoreDataHelpers.swift */,
+				83F9BAD52A3CE20F002198D0 /* ExampleData.swift */,
 				83F9BAC02A3CC075002198D0 /* SubjectLiftingApp.xcdatamodeld */,
+				83F9BAB92A3CC075002198D0 /* Assets.xcassets */,
 				83F9BABB2A3CC075002198D0 /* Preview Content */,
 			);
 			path = SubjectLiftingApp;
@@ -83,17 +86,6 @@
 				83F9BABC2A3CC075002198D0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		83F9BAD42A3CD6E2002198D0 /* Item */ = {
-			isa = PBXGroup;
-			children = (
-				83F9BAC82A3CC23B002198D0 /* AddItemView.swift */,
-				83F9BAD02A3CD6CF002198D0 /* ItemRowView.swift */,
-				83F9BAD22A3CD6D4002198D0 /* ItemDetailsView.swift */,
-				83F9BACE2A3CD4BE002198D0 /* Item-CoreDataHelpers.swift */,
-			);
-			path = Item;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

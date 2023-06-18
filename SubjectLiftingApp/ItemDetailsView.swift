@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ItemDetailsView: View {
     let item: Item
-    let circleRadius: CGFloat = 140
     let imageRadius: CGFloat = 180
 
     var body: some View {
@@ -25,18 +24,18 @@ struct ItemDetailsView: View {
                     .frame(width: imageRadius, height: imageRadius)
             }
             VStack(alignment: .leading, spacing: 5) {
-                Text(item.name ?? "Unnamed item")
+                Text(item.wrappedName)
                     .font(.largeTitle)
                     .bold()
-                Text(item.itemDescription ?? item.timestamp!.formatted(date: .numeric, time: .omitted))
+                Text(item.wrappedItemDescription)
             }
             Spacer()
         }
-        .padding()
         .presentationBackground(.orange.gradient)
         .foregroundColor(.black)
-        .cornerRadius(15)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
     }
 }
 
@@ -45,9 +44,6 @@ struct ItemDetailsView_Previews: PreviewProvider {
         Text("Reload preview to display sheet")
             .sheet(isPresented: .constant(true)) {
                 ItemDetailsView(item: .example)
-                    .background(.orange.gradient)
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
             }
     }
 }

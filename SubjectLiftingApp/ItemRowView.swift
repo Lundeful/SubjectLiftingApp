@@ -10,7 +10,7 @@ import SwiftUI
 struct ItemRowView: View {
     let item: Item
     let circleRadius: CGFloat = 55
-    let imageRadius: CGFloat = 125
+    let imageRadius: CGFloat = 75
     
     var body: some View {
         HStack {
@@ -26,7 +26,7 @@ struct ItemRowView: View {
             }
             VStack(alignment: .leading) {
                 Text(item.name ?? "Unnamed item")
-                    .font(.title)
+                    .font(.headline)
                     .bold()
                 Text(item.itemDescription ?? item.timestamp!.formatted(date: .numeric, time: .omitted))
                     .font(.subheadline)
@@ -34,11 +34,6 @@ struct ItemRowView: View {
             }
             Spacer()
         }
-        .padding(10)
-        .background(.orange.gradient)
-        .foregroundColor(.black)
-        .cornerRadius(15)
-        .frame(maxWidth: .infinity)
     }
 }
 

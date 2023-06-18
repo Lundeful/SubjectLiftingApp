@@ -15,45 +15,38 @@ struct ContentView: View {
     @State private var selectedItem: Item?
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Item.displayOrder, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
 
     var body: some View {
         NavigationStack {
             List {
-                VStack {
-                    ForEach(items) { item in
-                        Button {
+                ForEach(items) { item in
+                    ItemRowView(item: item)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
                             selectedItem = item
-                        } label: {
-                            ItemRowView(item: item)
                         }
-                        .buttonStyle(.plain)
-                    }
-                    .onDelete(perform: deleteItems)
                 }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
+                .onDelete(perform: deleteItems)
+                .onMove(perform: moveItems)
             }
             .navigationTitle("Items")
             .toolbar {
-//                ToolbarItem {
-//                    EditButton()
-//                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
                 ToolbarItem {
                     Button {
                         showingAddItemSheet = true
                     } label: {
-                        Label("Show sheet", systemImage: "plus")
+                        Label("Add item", systemImage: "plus")
                     }
                 }
             }
             .sheet(item: $selectedItem) { item in
                 ItemDetailsView(item: item)
-                    .padding()
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showingAddItemSheet) {
                 AddItemView()
@@ -64,25 +57,21 @@ struct ContentView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            try? viewContext.save()
         }
     }
-}
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .none
-    return formatter
-}()
+    private func moveItems(from source: IndexSet, to destination: Int) {
+        var revisedItems: [Item] = items.map { $0 }
+        revisedItems.move(fromOffsets: source, toOffset: destination)
+
+        for index in 0..<revisedItems.count {
+            revisedItems[index].displayOrder = Int16(index)
+        }
+
+        try? viewContext.save()
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

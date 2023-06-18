@@ -8,6 +8,12 @@
 import SwiftUI
 
 extension Item {
+    var wrappedName: String { name ?? "" }
+
+    var wrappedItemDescription: String { itemDescription ?? "" }
+
+    var wrappedTimestamp: Date { timestamp ?? Date() }
+
     var wrappedImage: UIImage? {
         if let imageData = picture, let image = UIImage(data: imageData) {
             return image

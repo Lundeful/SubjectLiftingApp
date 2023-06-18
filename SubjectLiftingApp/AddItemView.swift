@@ -18,7 +18,7 @@ struct AddItemView: View {
     @State private var showingImagePicker = false
     @State private var image: UIImage?
 
-    @State private var showErrorMessage = false
+    @State private var showEmptyFieldsMessage = false
 
     var body: some View {
         NavigationStack {
@@ -35,13 +35,14 @@ struct AddItemView: View {
                         } else {
                             VStack(alignment: .leading, spacing: 5) {
                                 Text("Selecting an image")
-                                    .font(.title)
+                                    .font(.headline)
                                     .bold()
                                 Text("The subject needs to be on a transparent background. There are two ways to accomplish this:")
+                                    .font(.subheadline)
                                 Text("1. Select image and choose an image where the subject is on a transparent background")
-                                    .font(.headline)
+                                    .font(.subheadline)
                                 Text("2. Go into the photos app, tap and hold on the subject to highlight it, press copy, and then come back here and press the paste button")
-                                    .font(.headline)
+                                    .font(.subheadline)
                             }
                         }
                         HStack {
@@ -75,7 +76,7 @@ struct AddItemView: View {
                     Button("Save", action: addItem)
                 }
             }
-            .alert("Please fill in picture, name and description", isPresented: $showErrorMessage) {
+            .alert("Please fill in picture, name and description", isPresented: $showEmptyFieldsMessage) {
                 Button("Ok", role: .cancel) {}
             }
             .onChange(of: selectedImages) { newValue in
@@ -101,7 +102,7 @@ struct AddItemView: View {
         let trimmedDescription = description.trimmingCharacters(in: .whitespacesAndNewlines)
 
         guard image != nil, !trimmedName.isEmpty, !trimmedDescription.isEmpty else {
-            showErrorMessage = true
+            showEmptyFieldsMessage = true
             return
         }
 
@@ -122,7 +123,6 @@ struct AddItemView: View {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-
 }
 
 struct AddItemView_Previews: PreviewProvider {
